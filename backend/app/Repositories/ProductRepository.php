@@ -13,16 +13,16 @@ class ProductRepository
         $this->model = $model;
     }
 
-    public function create($data,$categoryIds)
-    {
-        $product = $this->model->create($data);
+    public function create($data, $categoryIds)
+{
 
-        $product->categories()->attach($categoryIds);
 
-        return $product;
-    }
+    $product = $this->model->create($data);
 
-    
+    $product->categories()->attach($categoryIds);
+
+    return $product;
+}
 
     
 

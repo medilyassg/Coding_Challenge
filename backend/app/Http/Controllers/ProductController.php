@@ -32,6 +32,13 @@ class ProductController extends Controller
     {
         
         $data = $request->validated();
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('storage/products'), $filename);
+            $data['image']= $filename;
+        }
+
         $categoryIds = $request->input('categories');
 
         $product = $this->repository->create($data,$categoryIds);
