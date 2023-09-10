@@ -18,10 +18,8 @@
             class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-blue-500"
           >
             <option value="">All Categories</option>
-            <option value="1">Category 1</option>
-            <option value="2">Category 2</option>
-            <option value="3">Category 3</option>
-            <!-- Add more category options as needed -->
+            <option  v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+           
           </select>
         </div>
   
@@ -59,7 +57,7 @@
   const products = ref([]);
   const selectedCategory = ref('');
   const selectedSort = ref('asc');
-  
+  const categories=ref([])
   const getProducts = async () => {
     axios.get('http://localhost:8000/api/products', {
       params: {
@@ -74,14 +72,27 @@
         alert('Something went wrong', error);
       });
   };
+
+  const getCategories = async () => {
+    axios.get('http://localhost:8000/api/categories', {
+      
+    })
+      .then((resp) => {
+        categories.value = resp.data.data;
+      })
+      .catch((error) => {
+        alert('Something went wrong', error);
+      });
+  };
   
   
-  
+
   
  
   
   onMounted( () => {
     getProducts();
+    getCategories();
   });
   </script>
   

@@ -35,9 +35,8 @@
       required
     >
       <!-- Assuming you have category options to select from -->
-      <option value="1">Category 1</option>
-      <option value="2">Category 2</option>
-      <option value="3">Category 3</option>
+      <option  v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+      
       <!-- Add more category options as needed -->
     </select>
     <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
@@ -93,7 +92,7 @@
   
   <script setup>
   import axios from 'axios';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
   const formData = ref({
     name: '',
     price: '',
@@ -102,6 +101,7 @@ import { ref } from 'vue';
     image: null,
   });
   
+  const categories=ref([])
   const submitForm = async () => {
     axios.post(
       'http://localhost:8000/api/products', formData.value,
@@ -115,5 +115,22 @@ import { ref } from 'vue';
   const handleImageChange = (event) => {
       formData.value.image = event.target.files[0];
   };
+
+  const getCategories = async () => {
+    axios.get('http://localhost:8000/api/categories', {
+      
+    })
+      .then((resp) => {
+        categories.value = resp.data.data;
+      })
+      .catch((error) => {
+        alert('Something went wrong', error);
+      });
+  };
+
+  onMounted(()=>{
+    getCategories()
+  })
+
   </script>
   
