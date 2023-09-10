@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Resources\ProductResource;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
@@ -17,22 +18,26 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = $this->repository->filterByCategory($request->input('category_id'))
-            ->sortByPrice($request->input('sort_order'));
+        $categoryId = $request->input('category_id');
+        $sortOrder = $request->input('sort_order');
 
-        return [
-            'records'=>$products
-        ];
+        $products = $this->repository->getProducts($categoryId, $sortOrder);
+
+        return ProductResource::collection($products);
     }
 
-    public function store(CreateProductRequest $request)
-  {
-    $data = $request->validated();
 
-    $record = $this->repository->create($data);
-    
-    return $record;
-  }
+
+    public function store(CreateProductRequest $request)
+    {
+        
+        $data = $request->validated();
+        $categoryIds = $request->input('categories');
+
+        $product = $this->repository->create($data,$categoryIds);
+
+        return ProductResource::make($product);
+    }
 
     
 }

@@ -13,29 +13,38 @@ class ProductRepository
         $this->model = $model;
     }
 
-    public function create($data)
+    public function create($data,$categoryIds)
     {
-        return $this->model->create($data);
+        $product = $this->model->create($data);
+
+        $product->categories()->attach($categoryIds);
+
+        return $product;
     }
 
     
 
     
-    public function getAll()
-    {
-        return $this->model->all();
-    }
 
 
-    public function filterByCategory($categoryId)
-    {
-        return $this->model->whereHas('categories', function ($query) use ($categoryId) {
+    
+
+    
+    public function getProducts($categoryId, $sortOrder)
+{
+    $query = $this->model->query();
+
+    if (!empty($categoryId)) {
+        $query->whereHas('categories', function ($query) use ($categoryId) {
             $query->where('category_id', $categoryId);
-        })->get();
+        });
     }
 
-    public function sortByPrice($order = 'asc')
-    {
-        return $this->model->orderBy('price', $order)->get();
+    if (!empty($sortOrder)) {
+        $query->orderBy('price', $sortOrder);
     }
+
+    return $query->get();
+}
+
 }
