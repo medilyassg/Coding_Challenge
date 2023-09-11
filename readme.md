@@ -46,51 +46,50 @@ Before you begin, ensure you have the following software installed:
    ```bash
    git clone https://github.com/medilyassg/Coding_Challenge.git
 2. Navigate to the backend directory:
-   
+   ```bash
    cd Coding_Challenge/backend
 3. Install PHP dependencies using Composer:
+   ```bash
    composer install
-4. Configure your environment variables:
+5. Configure your environment variables:
 
-   Create a .env file by copying the .env.example file.
-   Update the database and other configuration settings in the .env file.
-5. Run database migrations to set up the database:
-
+- Create a .env file by copying the .env.example file.
+- Update the database and other configuration settings in the .env file.
+6. Run database migrations to set up the database:
+   ```bash
    php artisan migrate
    php artisan db:seed
-6. Start the Laravel development server:
-
+7. Start the Laravel development server:
+   ```bash
    php artisan serve
 
 The backend should now be accessible at http://localhost:8000.
 
 7. Navigate to the frontend directory:
-
+   ```bash
    cd Coding_Challenge/front-end
 8. Install JavaScript dependencies using npm:
-
+   ```bash
     npm install
-
 9. Start the Vue.js development server:
-
+   ```bash
    npm run serve
-
 The frontend should now be accessible at http://localhost:8080.
 
 
 ### CLI Command
  To create a new product from the command line, use the following command:
-
+   ```bash
  php artisan product:create
 
 
 ### Routes
-Access the product listing page to view and manage products by navigating to /.
-To create a new product, visit /product/create in your web browser.
+- Access the product listing page to view and manage products by navigating to /.
+- To create a new product, visit /product/create in your web browser.
 
 ### Testing
 Automated tests are included to cover product creation. You can run the tests for the backend using the following command:
-
+   ```bash
     cd backend
     php artisan test
 
