@@ -80,7 +80,7 @@ The frontend should now be accessible at http://localhost:8080.
 ### CLI Command
  To create a new product from the command line, use the following command:
    ```bash
- php artisan product:create
+   php artisan product:create
 
 
 ### Routes
