@@ -76,20 +76,19 @@ The backend should now be accessible at http://localhost:8000.
    npm run serve
 The frontend should now be accessible at http://localhost:8080.
 
-
-### CLI Command
- To create a new product from the command line, use the following command:
+## Cli Command
+- To create a new product from the command line, use the following command
    ```bash
-   php artisan product:create
-
-
-### Routes
+   php artisan product:create 
+   
+## Routes :
 - Access the product listing page to view and manage products by navigating to /.
 - To create a new product, visit /product/create in your web browser.
 
-### Testing
-Automated tests are included to cover product creation. You can run the tests for the backend using the following command:
+## Installation
+
+- Automated tests are included to cover product creation. You can run the tests for the backend using the   following command:
    ```bash
-    cd backend
-    php artisan test
+   cd backend
+   php artisan test
 
