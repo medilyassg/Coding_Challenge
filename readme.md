@@ -46,7 +46,7 @@ Before you begin, ensure you have the following software installed:
    ```bash
    git clone https://github.com/medilyassg/Coding_Challenge.git
 2. Navigate to the backend directory:
-   
+
    cd Coding_Challenge/backend
 3. Install PHP dependencies using Composer:
    composer install
