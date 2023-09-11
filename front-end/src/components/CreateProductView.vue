@@ -1,136 +1,107 @@
 <template>
     <div class="w-2/3 mx-auto mt-4 p-4 bg-white shadow-md rounded-lg">
-      <h2 class="text-2xl font-semibold mb-4">Create Product</h2>
-      <form @submit.prevent="submitForm" enctype="multipart/form-data">
-        <div class="mb-4 flex space-x-4">
-        <div class="w-1/2">
-          <label for="name" class="block text-gray-700">Name:</label>
-          <input
-            type="text"
-            id="name"
-            v-model="formData.name"
-            class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-        <div class="w-1/2">
-          <label for="price" class="block text-gray-700">Price:</label>
-          <input
-            type="number"
-            id="price"
-            v-model="formData.price"
-            class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-      </div>
-        <div class="mb-4">
-            <label for="categories" class="block text-gray-700">Categories:</label>
-  <div class="relative">
-    <select
-      id="categories"
-      v-model="formData.categories"
-      multiple
-      class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
-      required
-    >
-      <!-- Assuming you have category options to select from -->
-      <option  v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-      
-      <!-- Add more category options as needed -->
-    </select>
-    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-      <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4l-4 4m0 0l4 4m-4-4h14"></path>
-      </svg>
-    </div>
-  </div>
+        <h2 class="text-2xl font-semibold mb-4">Create Product</h2>
+        <form @submit.prevent="submitForm" enctype="multipart/form-data">
+            <div class="mb-4 flex space-x-4">
+                <div class="w-1/2">
+                    <label for="name" class="block text-gray-700">Name:</label>
+                    <input type="text" id="name" v-model="formData.name"
+                        class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
+                        required />
+                </div>
+                <div class="w-1/2">
+                    <label for="price" class="block text-gray-700">Price:</label>
+                    <input type="number" id="price" v-model="formData.price"
+                        class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
+                        required />
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="categories" class="block text-gray-700">Categories:</label>
+                <div class="relative">
+                    <select id="categories" v-model="formData.categories" multiple
+                        class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
+                        required>
+                        <option v-for="category in categories" :key="category.id" :value="category.id">
+                            {{ category.name }}
+                        </option>
 
-        </div>
-        <div class="mb-4">
-          <label for="description" class="block text-gray-700">Description:</label>
-          <textarea
-            id="description"
-            v-model="formData.description"
-            class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-        <div class="mb-4">
-          <label for="image" class="block text-gray-700">Image:</label>
-          <input
-            type="file"
-            id="image"
-            ref="imageInput"
-            @change="handleImageChange"
-            class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
-            accept="image/*"
-            required
-          />
-        </div>
-        <div class="mb-4">
-          <img
-            v-if="formData.image"
-            :src="formData.image"
-            alt="Selected Image"
-            class="max-h-40 mx-auto"
-          />
-        </div>
-        <div class="mt-6">
-          <button
-            type="submit"
-            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Create Product
-          </button>
-        </div>
-      </form>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                d="M12 4l-4 4m0 0l4 4m-4-4h14"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700">Description:</label>
+                <textarea id="description" v-model="formData.description"
+                    class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
+                    rows="4" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="block text-gray-700">Image:</label>
+                <input type="file" id="image" ref="imageInput" @change="handleImageChange"
+                    class="block w-full mt-2 py-2 px-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:border-blue-500"
+                    accept="image/*" required />
+            </div>
+
+            <div class="mt-6">
+                <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                    Create Product
+                </button>
+            </div>
+        </form>
     </div>
-  </template>
-  
-  
-  <script setup>
-  import axios from 'axios';
-import { onMounted, ref } from 'vue';
-  const formData = ref({
-    name: '',
-    price: '',
+</template>
+
+<script setup>
+import router from "@/router";
+import axios from "axios";
+import { onMounted, ref } from "vue";
+
+const categories = ref([]);
+
+const formData = ref({
+    name: "",
+    price: "",
     categories: [],
-    description: '',
+    description: "",
     image: null,
-  });
-  
-  const categories=ref([])
-  const submitForm = async () => {
-    axios.post(
-      'http://localhost:8000/api/products', formData.value,
-      {
-                    headers: {
-                        'content-type': 'multipart/form-data'
-                    }
-                })
-  };
-  
-  const handleImageChange = (event) => {
-      formData.value.image = event.target.files[0];
-  };
+});
 
-  const getCategories = async () => {
-    axios.get('http://localhost:8000/api/categories', {
-      
-    })
-      .then((resp) => {
-        categories.value = resp.data.data;
-      })
-      .catch((error) => {
-        alert('Something went wrong', error);
-      });
-  };
+const submitForm = async () => {
+    axios
+        .post("http://localhost:8000/api/products", formData.value, {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        })
+        .then((resp) => {
+            console.log(resp)
+            router.push({ name: "productList" });
+        })
 
-  onMounted(()=>{
-    getCategories()
-  })
+};
 
-  </script>
-  
+const handleImageChange = (event) => {
+    formData.value.image = event.target.files[0];
+};
+
+const getCategories = async () => {
+    axios
+        .get("http://localhost:8000/api/categories", {})
+        .then((resp) => {
+            categories.value = resp.data.data;
+        })
+
+};
+
+onMounted(() => {
+    getCategories();
+});
+</script>

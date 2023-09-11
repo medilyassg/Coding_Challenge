@@ -14,37 +14,29 @@ class ProductRepository
     }
 
     public function create($data, $categoryIds)
-{
+    {
 
+        $product = $this->model->create($data);
 
-    $product = $this->model->create($data);
+        $product->categories()->attach($categoryIds);
 
-    $product->categories()->attach($categoryIds);
+        return $product;
+    }
 
-    return $product;
-}
-
-    
-
-
-    
-
-    
     public function getProducts($categoryId, $sortOrder)
-{
-    $query = $this->model->query();
+    {
+        $query = $this->model->query();
 
-    if (!empty($categoryId)) {
-        $query->whereHas('categories', function ($query) use ($categoryId) {
-            $query->where('category_id', $categoryId);
-        });
+        if (!empty($categoryId)) {
+            $query->whereHas('categories', function ($query) use ($categoryId) {
+                $query->where('category_id', $categoryId);
+            });
+        }
+
+        if (!empty($sortOrder)) {
+            $query->orderBy('price', $sortOrder);
+        }
+
+        return $query->get();
     }
-
-    if (!empty($sortOrder)) {
-        $query->orderBy('price', $sortOrder);
-    }
-
-    return $query->get();
-}
-
 }

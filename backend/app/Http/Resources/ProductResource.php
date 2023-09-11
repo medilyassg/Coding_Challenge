@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
 {
-    
+
     public function toArray(Request $request): array
     {
         return [
@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
-            'image'=>$this->image ? asset("storage/products/{$this->image}") : null
-        ];    
+            'image' => $this->image ? asset("storage/products/{$this->image}") : null
+        ];
     }
 }
