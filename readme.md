@@ -85,7 +85,7 @@ The frontend should now be accessible at http://localhost:8080.
 - Access the product listing page to view and manage products by navigating to /.
 - To create a new product, visit /product/create in your web browser.
 
-## Installation
+## Testing 
 
 - Automated tests are included to cover product creation. You can run the tests for the backend using the   following command:
    ```bash
