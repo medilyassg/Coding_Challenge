@@ -14,7 +14,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'parent_category_id' => null, // Customize as needed
+            'parent_category_id' => Category::inRandomOrder()->value('id')
         ];
     }
 }
